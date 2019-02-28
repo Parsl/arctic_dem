@@ -43,6 +43,20 @@ need to be updated with user and workflow specifics.
 5. `walltime` : Update to match app durations
 
 
+Running the workflow
+--------------------
+
+Activate the environment
+
+>>> source ~/setup_parsl_env.sh
+
+Update the configs
+
+>>> emacs arctic_dem/stampede2_htex.py
+
+Run!
+
+>>> python3 parsl_runner.py -s /scratch/06187/cporter/results/region_03_conus/jobfiles/32m -f stampede2_htex
 
 Reference
 ---------
