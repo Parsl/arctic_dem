@@ -9,18 +9,23 @@ Setting up Stampede2
 --------------------
 
 Load the Python module on Stampede
+
 >>> module load python3/3.6.3
 
 Create python environment
+
 >>> python3 -m venv parsl_0.7.1_py3.6.3
 
 Activate the env
+
 >>> source parsl_0.7.1_py3.6.3/bin/activate
 
 Install parsl
+
 >>> pip install parsl==0.7.1
 
 Create a setup script with the following
+
 >>> echo "module load python3/3.6.3" >> setup_parsl_env.sh 
 >>> echo "source ~/parsl_0.7.1_py3.6.3/bin/activate" >> setup_parsl_env.sh
 
