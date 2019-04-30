@@ -47,11 +47,21 @@ def find_and_launch(source):
     script_fus = []
     for script_file in glob.glob(source + "/qsub*sh"):
         scriptpath = os.path.abspath(script_file);
-        print("Scriptpath : {}".format(scriptpath))
-        fu = exec_script(File(scriptpath),
-                         stdout=scriptpath + '.stdout',
-                         stderr=scriptpath + '.stderr')
-        script_fus.append(fu)
+        
+        # Test if task is already completed
+        outfile = os.path.basename(scriptpath)[5:-3]
+        outpath = os.path.join(os.path.dirname(scriptpath.replace("jobfiles","tif_results")),outfile)
+        if not(os.path.isfile(outpath+"_dem_smooth.tif") and os.path.isfile(outpath+"_matchtag.tif") \
+                and os.path.isfile(outpath+"_ortho.tif") and os.path.isfile(outpath+"_meta.txt") \
+                and not os.path.isdir(outpath)): 
+
+	        print("Scriptpath : {}".format(scriptpath))
+        	fu = exec_script(File(scriptpath),
+        	                 stdout=scriptpath + '.stdout',
+                	         stderr=scriptpath + '.stderr')
+	        script_fus.append(fu)
+
+    print("{} unfinished tasks".format(len(script_fus)))
 
     # Wait for all the scripts to exit
     [sf.result() for sf in script_fus]
