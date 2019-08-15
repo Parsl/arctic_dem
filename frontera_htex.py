@@ -27,10 +27,9 @@ from parsl.addresses import address_by_hostname
 # > out very well.
 
 config = Config(
-    retries = 3, # Parsl will retry failed apps upto 3 times before giving up.
     executors=[
         HighThroughputExecutor(
-            label="stampede2_htex",
+            label="frontera_htex",
             # If you turn on Debug logging expect about 1G of logs per hour
             # worker_debug=True,
             address=address_by_hostname(),
@@ -42,18 +41,17 @@ config = Config(
             heartbeat_threshold=300,
 
             provider=SlurmProvider(
-                cmd_timeout=60,
                 channel=LocalChannel(),
                 nodes_per_block=4,
                 init_blocks=1,
                 min_blocks=1,
-                max_blocks=8,
-                partition='skx-normal',  # Replace with partition name
-                scheduler_options='#SBATCH -A TG-EAR180027',   # Enter scheduler_options if needed
-                worker_init='source ~/setup_parsl_env.sh',
+                max_blocks=2,
+                partition='normal',  # Replace with partition name
+                scheduler_options='#SBATCH -A FTA-Morin',   # Enter scheduler_options if needed
+                worker_init='source ${SCRATCH}/setup_parsl_env.sh',
 
                 # Ideally we set the walltime to the longest supported walltime.
-                walltime='1:00:00',
+                walltime='24:00:00',
 
                 # Adding --no-kill to ensure that a single node failure doesn't terminate the whole srun job 
                 # Addresses concern 1)
