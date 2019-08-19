@@ -14,20 +14,20 @@ Load the Python module on Stampede
 
 Create python environment
 
->>> python3 -m venv parsl_0.7.2_py3.7.0
+>>> python3 -m venv parsl_0.8.0_py3.7.0
 
 Activate the env
 
->>> source parsl_0.7.2_py3.7.0/bin/activate
+>>> source parsl_0.8.0_py3.7.0/bin/activate
 
 Install parsl
 
->>> pip install parsl==0.7.2
+>>> pip install parsl==0.8.0
 
 Create a setup script with the following
 
 >>> echo "module load python3/3.7.0" >> setup_parsl_env.sh 
->>> echo "source ~/parsl_0.7.2_py3.7.0/bin/activate" >> setup_parsl_env.sh
+>>> echo "source ~/parsl_0.8.0_py3.7.0/bin/activate" >> setup_parsl_env.sh
 
 
 Update the Parsl config for user specific
