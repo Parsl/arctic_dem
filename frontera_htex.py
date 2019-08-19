@@ -54,14 +54,6 @@ config = Config(
 
                 # Ideally we set the walltime to the longest supported walltime.
                 walltime='1:00:00',
-                channel=LocalChannel(),
-                nodes_per_block=4,
-                init_blocks=1,
-                min_blocks=1,
-                max_blocks=2,
-                partition='normal',  # Replace with partition name
-                scheduler_options='#SBATCH -A FTA-Morin',   # Enter scheduler_options if needed
-                worker_init='source ${SCRATCH}/setup_parsl_env.sh',
 
                 # Adding --no-kill to ensure that a single node failure doesn't terminate the whole srun job 
                 # Addresses concern 1)
