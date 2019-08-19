@@ -26,10 +26,10 @@ def exec_script(scriptpath, stdout=None, stderr=None, mock=False):
             to the stdout file.
     """
     if mock:
-        return '''echo "/bin/bash {scriptpath}" '''
+        return f'''echo "/bin/bash {scriptpath}" '''
 
     else:
-        return "/bin/bash {scriptpath}"
+        return f"/bin/bash {scriptpath}"
 
 
 def find_and_launch(source):
