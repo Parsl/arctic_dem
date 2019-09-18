@@ -46,11 +46,12 @@ def find_and_launch(source):
 
     script_fus = []
     for script_file in glob.glob(source + "/qsub*sh"):
-        scriptpath = os.path.abspath(script_file);
-        
+        scriptpath = os.path.abspath(script_file)
         # Test if task is already completed
         outfile = os.path.basename(scriptpath)[5:-3]
-        outpath = os.path.join(os.path.dirname(scriptpath.replace("jobfiles","tif_results")),outfile)
+        resdir = os.path.basename(os.path.dirname(scriptpath))
+        stripdir = "{}_{}".format(outfile[:47],resdir)
+        outpath = os.path.join(os.path.dirname(scriptpath.replace("jobfiles","tif_results")),stripdir,outfile)
         if not(os.path.isfile(outpath+"_dem_smooth.tif") and os.path.isfile(outpath+"_matchtag.tif") \
                 and os.path.isfile(outpath+"_ortho.tif") and os.path.isfile(outpath+"_meta.txt") \
                 and not os.path.isdir(outpath)): 
