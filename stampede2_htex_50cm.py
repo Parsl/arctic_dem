@@ -34,7 +34,7 @@ config = Config(
             # If you turn on Debug logging expect about 1G of logs per hour
             # worker_debug=True,
             address=address_by_hostname(),
-            max_workers=2, # Set the maximum # of workers per manager/node.
+            max_workers=1, # Set the maximum # of workers per manager/node.
 
             # Set the heartbeat params to avoid faults from periods of network unavailability
             # Addresses concern 2)
