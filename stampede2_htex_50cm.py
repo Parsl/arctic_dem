@@ -31,6 +31,8 @@ config = Config(
     executors=[
         HighThroughputExecutor(
             label="stampede2_htex",
+            # Suppress interchange failure on recieving spurious message
+            suppress_failure=True,
             # If you turn on Debug logging expect about 1G of logs per hour
             # worker_debug=True,
             address=address_by_hostname(),
@@ -53,7 +55,7 @@ config = Config(
                 worker_init='source ~/setup_parsl_env.sh',
 
                 # Ideally we set the walltime to the longest supported walltime.
-                walltime='1:00:00',
+                walltime='24:00:00',
 
                 # Adding --no-kill to ensure that a single node failure doesn't terminate the whole srun job 
                 # Addresses concern 1)
