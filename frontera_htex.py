@@ -34,7 +34,7 @@ config = Config(
             # If you turn on Debug logging expect about 1G of logs per hour
             # worker_debug=True,
             address=address_by_hostname(),
-            max_workers=1, # Set the maximum # of workers per manager/node.
+            max_workers=2, # Set the maximum # of workers per manager/node.
 
             # Set the heartbeat params to avoid faults from periods of network unavailability
             # Addresses concern 2)
@@ -44,16 +44,16 @@ config = Config(
             provider=SlurmProvider(
                 cmd_timeout=60,
                 channel=LocalChannel(),
-                nodes_per_block=2,
+                nodes_per_block=20,
                 init_blocks=1,
                 min_blocks=1,
-                max_blocks=8,
+                max_blocks=20,
                 partition='normal',  # Replace with partition name
                 scheduler_options='#SBATCH -A FTA-Morin',   # Enter scheduler_options if needed
                 worker_init='source ${SCRATCH}/setup_parsl_env.sh',
 
                 # Ideally we set the walltime to the longest supported walltime.
-                walltime='1:00:00',
+                walltime='24:00:00',
 
                 # Adding --no-kill to ensure that a single node failure doesn't terminate the whole srun job 
                 # Addresses concern 1)
