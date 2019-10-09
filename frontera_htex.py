@@ -31,6 +31,8 @@ config = Config(
     executors=[
         HighThroughputExecutor(
             label="frontera_htex",
+            # Suppress interchange failure on recieving spurious message
+            suppress_failure=True,
             # If you turn on Debug logging expect about 1G of logs per hour
             # worker_debug=True,
             address=address_by_hostname(),
