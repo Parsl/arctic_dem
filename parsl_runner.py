@@ -58,8 +58,8 @@ def find_and_launch(source):
 
 	        print("Scriptpath : {}".format(scriptpath))
         	fu = exec_script(File(scriptpath),
-        	                 stdout=scriptpath + '.stdout',
-                	         stderr=scriptpath + '.stderr')
+        	                 stdout=scriptpath + '.out',
+                	         stderr=scriptpath + '.err')
 	        script_fus.append(fu)
 
     print("{} unfinished tasks".format(len(script_fus)))
