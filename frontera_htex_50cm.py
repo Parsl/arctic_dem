@@ -30,7 +30,7 @@ config = Config(
     retries = 3, # Parsl will retry failed apps upto 3 times before giving up.
     executors=[
         HighThroughputExecutor(
-            label="frontera_htex",
+            label="frontera_htex_50cm",
             # Suppress interchange failure on recieving spurious message
             suppress_failure=True,
             # If you turn on Debug logging expect about 1G of logs per hour
@@ -52,10 +52,10 @@ config = Config(
                 max_blocks=25,
                 partition='normal',  # Replace with partition name
                 scheduler_options='#SBATCH -A FTA-Morin',   # Enter scheduler_options if needed
-                worker_init='source ${SCRATCH}/setup_parsl_env.sh',
+                worker_init='source /scratch1/06187/cporter/setup_parsl_env.sh',
 
                 # Ideally we set the walltime to the longest supported walltime.
-                walltime='24:00:00',
+                walltime='48:00:00',
 
                 # Adding --no-kill to ensure that a single node failure doesn't terminate the whole srun job 
                 # Addresses concern 1)
